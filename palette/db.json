@@ -1,0 +1,116 @@
+{
+	"Kaninchenhaus": {
+		"bright-black": {
+			"truecolor": [68, 68, 68],
+			"xterm256": {
+				"number": 38,
+				"rgb": [68, 68, 68]
+			}
+		},
+		"dim-black": {
+			"truecolor": [48, 48, 48],
+			"xterm256": {
+				"number": 236,
+				"rgb": [48, 48, 48]
+			}
+		},
+		"bright-magenta": {
+			"truecolor": [245, 212, 212],
+			"xterm256": {
+				"number": 181,
+				"rgb": [215, 175, 175]
+			}
+		},
+		"dim-magenta": {
+			"truecolor": [178, 108, 108],
+			"xterm256": {
+				"number": 131,
+				"rgb": [175, 95, 95]
+			}
+		},
+		"bright-green": {
+			"truecolor": [136, 188, 169],
+			"xterm256": {
+				"number": 108,
+				"rgb": [135, 175, 135]
+			}
+		},
+		"dim-green": {
+			"truecolor": [61, 90, 66],
+			"xterm256": {
+				"number": 65,
+				"rgb": [95, 135, 95]
+			}
+		},
+		"bright-yellow": {
+			"truecolor": [244, 216, 160],
+			"xterm256": {
+				"number": 222,
+				"rgb": [255, 215, 135]
+			}
+		},
+		"dim-yellow": {
+			"truecolor": [212, 143, 77],
+			"xterm256": {
+				"number": 179,
+				"rgb": [215, 175, 95]
+			}
+		},
+		"bright-blue": {
+			"truecolor": [145, 176, 235],
+			"xterm256": {
+				"number": 68,
+				"rgb": [95, 135, 215]
+			}
+		},
+		"dim-blue": {
+			"truecolor": [35, 92, 158],
+			"xterm256": {
+				"number": 24,
+				"rgb": [0, 95, 135]
+			}
+		},
+		"bright-purple": {
+			"truecolor": [145, 131, 198],
+			"xterm256": {
+				"number": 103,
+				"rgb": [135, 135, 175]
+			}
+		},
+		"dim-purple": {
+			"truecolor": [86, 75, 128],
+			"xterm256": {
+				"number": 60,
+				"rgb": [95, 95, 135]
+			}
+		},
+		"bright-cyan": {
+			"truecolor": [168, 218, 236],
+			"xterm256": {
+				"number": 153,
+				"rgb": [175, 215, 255]
+			}
+		},
+		"dim-cyan": {
+			"truecolor": [115, 144, 168],
+			"xterm256": {
+				"number": 110,
+				"rgb": [135, 175, 215]
+			}
+		},
+		"bright-white": {
+			"truecolor": [238, 238, 238],
+			"xterm256": {
+				"number": 255,
+				"rgb": [238, 238, 238]
+			}
+		},
+		"dim-white": {
+			"truecolor": [198, 198, 198],
+			"xterm256": {
+				"number": 251,
+				"rgb": [198, 198, 198]
+			}
+		}
+	}
+}
