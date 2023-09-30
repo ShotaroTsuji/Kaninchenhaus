@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import importlib
 import json
+import plistlib
 import sys
 from types import ModuleType
 
@@ -74,16 +75,9 @@ def render():
     print(palette_view.render(Palette()))
 
 
-def generate_iterm2():
-    json.dump(palette_converter.ConvertToiTerm2(Palette()).generate(), sys.stdout)
-
-
-def merge_iterm2():
-    base = json.load(sys.stdin)
-    diff = palette_converter.ConvertToiTerm2(Palette()).generate()
-    other = { "Name": "Kaninchenhaus" }
-    patched = {**base, **diff, **other}
-    json.dump(patched, sys.stdout, indent=2)
+def iterm_colors():
+    colors = palette_converter.ConvertToiTerm2(Palette()).generate()
+    plistlib.dump(colors, sys.stdout.buffer)
 
 
 if __name__ == "__main__":
@@ -91,9 +85,7 @@ if __name__ == "__main__":
         run()
     elif sys.argv[1] == "render":
         render()
-    elif sys.argv[1] == "generate-iterm2":
-        generate_iterm2()
-    elif sys.argv[1] == "merge-iterm2":
-        merge_iterm2()
+    elif sys.argv[1] == "iterm-colors":
+        iterm_colors()
     else:
         raise ValueError()
