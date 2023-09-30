@@ -1,7 +1,11 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import importlib
 import json
+import plistlib
 import sys
+from types import ModuleType
+
+import palette_converter
 
 
 class Palette:
@@ -10,6 +14,9 @@ class Palette:
             db = json.load(f)
 
         self.palette = db["Kaninchenhaus"]
+
+    def truecolor_rgb(self, name: str) -> list[int]:
+        return self.palette[name]["truecolor"]
 
     def truecolor(self, name: str) -> str:
         [r, g, b] = self.palette[name]["truecolor"]
@@ -21,6 +28,8 @@ class Palette:
 
 
 class PaletteView:
+    view: ModuleType | None
+
     def __init__(self):
         self.view = None
 
@@ -66,10 +75,17 @@ def render():
     print(palette_view.render(Palette()))
 
 
+def iterm_colors():
+    colors = palette_converter.ConvertToiTerm2(Palette()).generate()
+    plistlib.dump(colors, sys.stdout.buffer)
+
+
 if __name__ == "__main__":
     if sys.argv[1] == "run":
         run()
     elif sys.argv[1] == "render":
         render()
+    elif sys.argv[1] == "iterm-colors":
+        iterm_colors()
     else:
         raise ValueError()
