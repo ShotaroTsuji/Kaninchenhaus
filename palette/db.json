@@ -14,14 +14,14 @@
 				"rgb": [48, 48, 48]
 			}
 		},
-		"bright-magenta": {
+		"bright-red": {
 			"truecolor": [245, 212, 212],
 			"xterm256": {
 				"number": 181,
 				"rgb": [215, 175, 175]
 			}
 		},
-		"dim-magenta": {
+		"dim-red": {
 			"truecolor": [178, 108, 108],
 			"xterm256": {
 				"number": 131,
@@ -70,14 +70,14 @@
 				"rgb": [0, 95, 135]
 			}
 		},
-		"bright-purple": {
+		"bright-magenta": {
 			"truecolor": [145, 131, 198],
 			"xterm256": {
 				"number": 103,
 				"rgb": [135, 135, 175]
 			}
 		},
-		"dim-purple": {
+		"dim-magenta": {
 			"truecolor": [86, 75, 128],
 			"xterm256": {
 				"number": 60,

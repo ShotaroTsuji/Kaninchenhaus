@@ -3,6 +3,8 @@ import importlib
 import json
 import sys
 
+import palette_converter
+
 
 class Palette:
     def __init__(self):
@@ -10,6 +12,9 @@ class Palette:
             db = json.load(f)
 
         self.palette = db["Kaninchenhaus"]
+
+    def truecolor_rgb(self, name: str) -> list[int]:
+        return self.palette[name]["truecolor"]
 
     def truecolor(self, name: str) -> str:
         [r, g, b] = self.palette[name]["truecolor"]
@@ -66,10 +71,16 @@ def render():
     print(palette_view.render(Palette()))
 
 
+def generate_iterm2():
+    print(palette_converter.ConvertToiTerm2(Palette()).generate())
+
+
 if __name__ == "__main__":
     if sys.argv[1] == "run":
         run()
     elif sys.argv[1] == "render":
         render()
+    elif sys.argv[1] == "generate-iterm2":
+        generate_iterm2()
     else:
         raise ValueError()
