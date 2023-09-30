@@ -2,6 +2,17 @@ from palette import Palette
 
 
 def rgb_to_iterm2_rgb(rgb: list[int]) -> dict[str, float | str]:
+    """
+    Convert 16 bit RGB values to iTerm2 profile dictionary
+
+    `rgb` is a list of `int`s, which consists of RGB values ranging from 0 to 255.
+
+    This function returns a `dict` in the format of (maybe) serialized `NSColor` object.
+
+    iTerm2 requires `"Color Space"` key to interpret color values correctly.
+    https://gitlab.com/gnachman/iterm2/-/issues/5917
+    https://github.com/mbadolato/iTerm2-Color-Schemes/blob/ed2d5b967a5a3ef1afdfe6907a1d071c5a753323/schemes/Abernathy.itermcolors
+    """
     [r, g, b] = rgb
     return {
         "Green Component": g / 255.0,
