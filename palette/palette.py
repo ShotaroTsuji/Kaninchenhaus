@@ -1,3 +1,6 @@
+"""
+Color palette viewer
+"""
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import importlib
 import json
@@ -10,7 +13,7 @@ import palette_converter
 
 class Palette:
     def __init__(self):
-        with open("./db.json", "r") as f:
+        with open("./db.json", "r", encoding="utf8") as f:
             db = json.load(f)
 
         self.palette = db["Kaninchenhaus"]
@@ -41,6 +44,7 @@ class PaletteView:
 
     def render(self, palette) -> str:
         self.load_view()
+        assert self.view is not None
         return self.view.render(palette)
 
 
@@ -54,7 +58,7 @@ class PaletteController(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
-        self.send_header("Content-Length", format(f"{len(body.encode())}"));
+        self.send_header("Content-Length", format(f"{len(body.encode())}"))
         self.end_headers()
         self.wfile.write(body.encode())
 
@@ -63,6 +67,7 @@ PORT: int = 8000
 palette_view = PaletteView()
 
 def run():
+    """Run a server that serves color platte in HTML"""
     server = HTTPServer(('', PORT), PaletteController)
 
     try:
