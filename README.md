@@ -10,6 +10,13 @@ theme files. Run `palette.py` from the `palette` directory because it reads
 cd palette
 ```
 
+By default, `palette.py` uses the `KaninchenhausDark` object in `db.json`. To use
+another top-level palette object, pass `--palette`.
+
+```sh
+python3 palette.py --palette KaninchenhausDark render
+```
+
 ### Preview in a browser
 
 Start a local HTTP server for the palette preview.
