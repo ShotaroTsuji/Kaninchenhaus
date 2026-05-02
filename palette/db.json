@@ -112,5 +112,119 @@
 				"rgb": [198, 198, 198]
 			}
 		}
+	},
+	"KaninchenhausLight": {
+		"bright-black": {
+			"truecolor": [127, 123, 117],
+			"xterm256": {
+				"number": 243,
+				"rgb": [118, 118, 118]
+			}
+		},
+		"dim-black": {
+			"truecolor": [244, 242, 235],
+			"xterm256": {
+				"number": 255,
+				"rgb": [238, 238, 238]
+			}
+		},
+		"bright-red": {
+			"truecolor": [248, 200, 200],
+			"xterm256": {
+				"number": 224,
+				"rgb": [255, 215, 215]
+			}
+		},
+		"dim-red": {
+			"truecolor": [174, 74, 78],
+			"xterm256": {
+				"number": 131,
+				"rgb": [175, 95, 95]
+			}
+		},
+		"bright-green": {
+			"truecolor": [176, 224, 204],
+			"xterm256": {
+				"number": 152,
+				"rgb": [175, 215, 215]
+			}
+		},
+		"dim-green": {
+			"truecolor": [76, 158, 148],
+			"xterm256": {
+				"number": 72,
+				"rgb": [95, 175, 135]
+			}
+		},
+		"bright-yellow": {
+			"truecolor": [250, 226, 96],
+			"xterm256": {
+				"number": 221,
+				"rgb": [255, 215, 95]
+			}
+		},
+		"dim-yellow": {
+			"truecolor": [202, 96, 38],
+			"xterm256": {
+				"number": 166,
+				"rgb": [215, 95, 0]
+			}
+		},
+		"bright-blue": {
+			"truecolor": [84, 138, 210],
+			"xterm256": {
+				"number": 68,
+				"rgb": [95, 135, 215]
+			}
+		},
+		"dim-blue": {
+			"truecolor": [36, 91, 151],
+			"xterm256": {
+				"number": 24,
+				"rgb": [0, 95, 135]
+			}
+		},
+		"bright-magenta": {
+			"truecolor": [126, 100, 176],
+			"xterm256": {
+				"number": 97,
+				"rgb": [135, 95, 175]
+			}
+		},
+		"dim-magenta": {
+			"truecolor": [92, 76, 144],
+			"xterm256": {
+				"number": 60,
+				"rgb": [95, 95, 135]
+			}
+		},
+		"bright-cyan": {
+			"truecolor": [170, 220, 236],
+			"xterm256": {
+				"number": 153,
+				"rgb": [175, 215, 255]
+			}
+		},
+		"dim-cyan": {
+			"truecolor": [70, 140, 165],
+			"xterm256": {
+				"number": 67,
+				"rgb": [95, 135, 175]
+			}
+		},
+		"bright-white": {
+			"truecolor": [28, 30, 40],
+			"xterm256": {
+				"number": 234,
+				"rgb": [28, 28, 28]
+			}
+		},
+		"dim-white": {
+			"truecolor": [54, 57, 72],
+			"xterm256": {
+				"number": 237,
+				"rgb": [58, 58, 58]
+			}
+		}
 	}
 }

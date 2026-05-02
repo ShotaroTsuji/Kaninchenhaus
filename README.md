@@ -15,6 +15,7 @@ another top-level palette object, pass `--palette`.
 
 ```sh
 python3 palette.py --palette KaninchenhausDark render
+python3 palette.py --palette KaninchenhausLight render
 ```
 
 ### Preview in a browser
@@ -56,5 +57,6 @@ python3 palette.py iterm-colors
 To update the theme file:
 
 ```sh
-python3 palette.py iterm-colors > ../themes/Kaninchenhaus.itermcolors
+python3 palette.py --palette KaninchenhausDark iterm-colors > "../themes/Kaninchenhaus Dark.itermcolors"
+python3 palette.py --palette KaninchenhausLight iterm-colors > "../themes/Kaninchenhaus Light.itermcolors"
 ```
