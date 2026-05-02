@@ -32,6 +32,16 @@ SAMPLE_WORDS: list[str] = [
 ]
 
 
+def nav_links() -> str:
+    return """
+    <nav class="page-nav">
+      <a href="/">Palette</a>
+      <a href="/truecolor">True Color Preview</a>
+      <a href="/xterm">xterm256 Preview</a>
+    </nav>
+    """
+
+
 def sample_text(color: str) -> str:
     words = " ".join(SAMPLE_WORDS)
     return f"{color:14} $ {words} 0123456789 ./src/theme.py"
@@ -109,6 +119,14 @@ def render_theme_preview(palette, mode: str) -> str:
         margin: 0 auto;
         padding: 32px;
       }}
+      .page-nav {{
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+      }}
+      .page-nav a {{
+        color: {foreground};
+      }}
       h1 {{
         margin-bottom: 8px;
         font-size: 24px;
@@ -140,6 +158,7 @@ def render_theme_preview(palette, mode: str) -> str:
 
     <body>
       <main>
+        {nav_links()}
         <h1>{title}</h1>
         <p>Background: {background}</p>
         <div class="terminal">
@@ -164,6 +183,16 @@ def render(palette) -> str:
       }}
       body {{
         width: 100%;
+      }}
+      .page-nav {{
+        width: 260mm;
+        margin: 0 auto;
+        padding: 1em 0 0;
+        display: flex;
+        gap: 16px;
+      }}
+      .page-nav a {{
+        color: inherit;
       }}
       div.palettes {{
         width: 260mm;
@@ -197,6 +226,7 @@ def render(palette) -> str:
     </head>
 
     <body style="background-color: {palette.background_color()};">
+    {nav_links()}
     <div class="palettes">
       <div class="palette-container-wrapper">
         <h2 class="palette-container-title">TrueColor</h2>
