@@ -13,7 +13,7 @@ import palette_converter
 
 
 DEFAULT_PALETTE = "KaninchenhausDark"
-palette_name = DEFAULT_PALETTE
+palette_names = [DEFAULT_PALETTE]
 
 
 class Palette:
@@ -21,6 +21,7 @@ class Palette:
         with open("./db.json", "r", encoding="utf8") as f:
             db = json.load(f)
 
+        self.name = name
         self.palette = db[name]
 
     def truecolor_rgb(self, name: str) -> list[int]:
@@ -56,25 +57,27 @@ class PaletteView:
         else:
             self.view = importlib.reload(self.view)
 
-    def render(self, palette) -> str:
+    def render(self, palettes) -> str:
         self.load_view()
         assert self.view is not None
-        return self.view.render(palette)
+        return self.view.render(palettes)
 
-    def render_theme_preview(self, palette, mode: str) -> str:
+    def render_theme_preview(self, palettes, mode: str) -> str:
         self.load_view()
         assert self.view is not None
-        return self.view.render_theme_preview(palette, mode)
+        return self.view.render_theme_preview(palettes, mode)
 
 
 class PaletteController(BaseHTTPRequestHandler):
     def do_GET(self):
+        palettes = [Palette(name) for name in palette_names]
+
         if self.path == "/":
-            body = palette_view.render(Palette(palette_name))
+            body = palette_view.render(palettes)
         elif self.path == "/truecolor":
-            body = palette_view.render_theme_preview(Palette(palette_name), "truecolor")
+            body = palette_view.render_theme_preview(palettes, "truecolor")
         elif self.path == "/xterm":
-            body = palette_view.render_theme_preview(Palette(palette_name), "xterm")
+            body = palette_view.render_theme_preview(palettes, "xterm")
         else:
             self.send_error(404)
             return
@@ -100,8 +103,12 @@ def run():
         server.shutdown()
 
 
-def render(name: str):
-    print(palette_view.render(Palette(name)))
+def palette_names_from_arg(value: str) -> list[str]:
+    return [name.strip() for name in value.split(",") if name.strip()]
+
+
+def render(names: list[str]):
+    print(palette_view.render([Palette(name) for name in names]))
 
 
 def iterm_colors(name: str):
@@ -114,18 +121,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "--palette",
         default=DEFAULT_PALETTE,
-        help="Top-level palette name in db.json",
+        help="Top-level palette name in db.json. Separate multiple names with commas.",
     )
     parser.add_argument("command", choices=["run", "render", "iterm-colors"])
     args = parser.parse_args()
 
-    palette_name = args.palette
+    palette_names = palette_names_from_arg(args.palette)
 
     if args.command == "run":
         run()
     elif args.command == "render":
-        render(args.palette)
+        render(palette_names)
     elif args.command == "iterm-colors":
-        iterm_colors(args.palette)
+        if len(palette_names) != 1:
+            raise ValueError("iterm-colors supports exactly one palette")
+        iterm_colors(palette_names[0])
     else:
         raise ValueError()
