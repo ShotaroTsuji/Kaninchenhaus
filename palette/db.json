@@ -129,10 +129,10 @@
 			}
 		},
 		"bright-red": {
-			"truecolor": [248, 200, 200],
+			"truecolor": [239, 133, 133],
 			"xterm256": {
-				"number": 224,
-				"rgb": [255, 215, 215]
+				"number": 210,
+				"rgb": [255, 135, 135]
 			}
 		},
 		"dim-red": {
@@ -143,24 +143,24 @@
 			}
 		},
 		"bright-green": {
-			"truecolor": [176, 224, 204],
-			"xterm256": {
-				"number": 152,
-				"rgb": [175, 215, 215]
-			}
-		},
-		"dim-green": {
-			"truecolor": [76, 158, 148],
+			"truecolor": [95, 193, 152],
 			"xterm256": {
 				"number": 72,
 				"rgb": [95, 175, 135]
 			}
 		},
-		"bright-yellow": {
-			"truecolor": [250, 226, 96],
+		"dim-green": {
+			"truecolor": [67, 139, 130],
 			"xterm256": {
-				"number": 221,
-				"rgb": [255, 215, 95]
+				"number": 66,
+				"rgb": [95, 135, 135]
+			}
+		},
+		"bright-yellow": {
+			"truecolor": [190, 162, 6],
+			"xterm256": {
+				"number": 142,
+				"rgb": [175, 175, 0]
 			}
 		},
 		"dim-yellow": {
@@ -192,24 +192,24 @@
 			}
 		},
 		"dim-magenta": {
-			"truecolor": [92, 76, 144],
+			"truecolor": [83, 68, 130],
 			"xterm256": {
 				"number": 60,
 				"rgb": [95, 95, 135]
 			}
 		},
 		"bright-cyan": {
-			"truecolor": [170, 220, 236],
+			"truecolor": [90, 187, 218],
 			"xterm256": {
-				"number": 153,
-				"rgb": [175, 215, 255]
+				"number": 74,
+				"rgb": [95, 175, 215]
 			}
 		},
 		"dim-cyan": {
-			"truecolor": [70, 140, 165],
+			"truecolor": [64, 127, 150],
 			"xterm256": {
-				"number": 67,
-				"rgb": [95, 135, 175]
+				"number": 66,
+				"rgb": [95, 135, 135]
 			}
 		},
 		"bright-white": {
@@ -220,10 +220,10 @@
 			}
 		},
 		"dim-white": {
-			"truecolor": [54, 57, 72],
+			"truecolor": [72, 75, 90],
 			"xterm256": {
-				"number": 237,
-				"rgb": [58, 58, 58]
+				"number": 239,
+				"rgb": [78, 78, 78]
 			}
 		}
 	}
