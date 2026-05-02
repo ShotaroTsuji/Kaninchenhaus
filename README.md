@@ -30,7 +30,12 @@ Then open:
 
 ```text
 http://localhost:8000/
+http://localhost:8000/truecolor
+http://localhost:8000/xterm
 ```
+
+`/truecolor` and `/xterm` render terminal-like previews with the palette
+background color and sample text in each palette color.
 
 ### Render HTML
 

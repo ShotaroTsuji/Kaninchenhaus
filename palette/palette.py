@@ -52,20 +52,30 @@ class PaletteView:
         assert self.view is not None
         return self.view.render(palette)
 
+    def render_theme_preview(self, palette, mode: str) -> str:
+        self.load_view()
+        assert self.view is not None
+        return self.view.render_theme_preview(palette, mode)
+
 
 class PaletteController(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path != "/":
+        if self.path == "/":
+            body = palette_view.render(Palette(palette_name))
+        elif self.path == "/truecolor":
+            body = palette_view.render_theme_preview(Palette(palette_name), "truecolor")
+        elif self.path == "/xterm":
+            body = palette_view.render_theme_preview(Palette(palette_name), "xterm")
+        else:
             self.send_error(404)
             return
 
-        body = palette_view.render(Palette(palette_name))
-
+        body_bytes = body.encode()
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
-        self.send_header("Content-Length", format(f"{len(body.encode())}"))
+        self.send_header("Content-Length", format(len(body_bytes)))
         self.end_headers()
-        self.wfile.write(body.encode())
+        self.wfile.write(body_bytes)
 
 
 PORT: int = 8000
