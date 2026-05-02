@@ -51,7 +51,7 @@ class ConvertToiTerm2:
             "Ansi 13 Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("bright-magenta")),
             "Ansi 14 Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("bright-cyan")),
             "Ansi 15 Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("bright-white")),
-            "Background Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("dim-black")),
+            "Background Color": rgb_to_iterm2_rgb(self.palette.background_color_rgb()),
             "Foreground Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("dim-white")),
             "Cursor Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("dim-white")),
             "Cursor Text Color": rgb_to_iterm2_rgb(self.palette.truecolor_rgb("bright-white")),

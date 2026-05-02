@@ -32,6 +32,16 @@ SAMPLE_WORDS: list[str] = [
 ]
 
 
+def nav_links() -> str:
+    return """
+    <nav class="page-nav">
+      <a href="/">Palette</a>
+      <a href="/truecolor">True Color Preview</a>
+      <a href="/xterm">xterm256 Preview</a>
+    </nav>
+    """
+
+
 def sample_text(color: str) -> str:
     words = " ".join(SAMPLE_WORDS)
     return f"{color:14} $ {words} 0123456789 ./src/theme.py"
@@ -63,6 +73,14 @@ def color_value(palette, color: str, mode: str) -> str:
     raise ValueError(f"Unknown color mode: {mode}")
 
 
+def background_color_value(palette, mode: str) -> str:
+    if mode == "truecolor":
+        return palette.background_color()
+    if mode == "xterm":
+        return palette.background_color_xterm256()
+    raise ValueError(f"Unknown color mode: {mode}")
+
+
 def preview_line(palette, color: str, mode: str) -> str:
     value = color_value(palette, color, mode)
     return f"""
@@ -74,7 +92,7 @@ def preview_line(palette, color: str, mode: str) -> str:
 
 
 def render_theme_preview(palette, mode: str) -> str:
-    background = color_value(palette, "dim-black", mode)
+    background = background_color_value(palette, mode)
     foreground = color_value(palette, "dim-white", mode)
     title = "True Color Preview" if mode == "truecolor" else "xterm256 Preview"
 
@@ -100,6 +118,14 @@ def render_theme_preview(palette, mode: str) -> str:
         max-width: 1040px;
         margin: 0 auto;
         padding: 32px;
+      }}
+      .page-nav {{
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+      }}
+      .page-nav a {{
+        color: {foreground};
       }}
       h1 {{
         margin-bottom: 8px;
@@ -132,6 +158,7 @@ def render_theme_preview(palette, mode: str) -> str:
 
     <body>
       <main>
+        {nav_links()}
         <h1>{title}</h1>
         <p>Background: {background}</p>
         <div class="terminal">
@@ -156,39 +183,56 @@ def render(palette) -> str:
       }}
       body {{
         width: 100%;
+        min-height: 100vh;
+        color: {palette.truecolor("dim-white")};
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 15px;
+        line-height: 1.55;
+      }}
+      .page-nav {{
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 32px 32px 0;
+        display: flex;
+        gap: 16px;
+      }}
+      .page-nav a {{
+        color: inherit;
       }}
       div.palettes {{
-        width: 260mm;
-        margin: auto;
-        padding: 1em 0;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 24px 32px 32px;
         display: grid;
-        grid-template-columns: 12.5cm 12.5cm;
-        column-gap: 1cm;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 32px;
       }}
       div.palette-container {{
         display: grid;
-        grid-template-columns: 6cm 6cm;
-        column-gap: 0.5cm;
-        row-gap: 0.25cm;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }}
       .palette-container-title {{
-        font-size: 14pt;
-        text-align: center;
+        margin-bottom: 12px;
+        font-size: 24px;
+        font-weight: 700;
       }}
       div.palette-box-container {{
-        width: 6cm;
+        min-width: 0;
       }}
       div.palette-box {{
-        width: 6cm;
-        height: 2cm;
+        width: 100%;
+        height: 72px;
       }}
       div.palette-box-caption {{
-        text-align: center;
+        margin-bottom: 4px;
+        color: {palette.truecolor("dim-white")};
       }}
       </style>
     </head>
 
-    <body style="background-color: rgb(255,255,255);">
+    <body style="background-color: {palette.background_color()};">
+    {nav_links()}
     <div class="palettes">
       <div class="palette-container-wrapper">
         <h2 class="palette-container-title">TrueColor</h2>
