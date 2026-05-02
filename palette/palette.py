@@ -25,6 +25,12 @@ class Palette:
         [r, g, b] = self.palette[name]["truecolor"]
         return f"rgb({r},{g},{b})"
 
+    def background_color(self) -> str:
+        return self.truecolor("background-color")
+
+    def background_color_rgb(self) -> list[int]:
+        return self.truecolor_rgb("background-color")
+
     def xterm256(self, name: str) -> str:
         [r, g, b] = self.palette[name]["xterm256"]["rgb"]
         return f"rgb({r},{g},{b})"

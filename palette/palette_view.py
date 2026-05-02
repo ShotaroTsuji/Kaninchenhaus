@@ -80,7 +80,7 @@ def render(palette) -> str:
       </style>
     </head>
 
-    <body style="background-color: rgb(255,255,255);">
+    <body style="background-color: {palette.background_color()};">
     <div class="palettes">
       <div class="palette-container-wrapper">
         <h2 class="palette-container-title">TrueColor</h2>

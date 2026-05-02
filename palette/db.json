@@ -1,5 +1,12 @@
 {
 	"Kaninchenhaus": {
+		"background-color": {
+			"truecolor": [255, 255, 255],
+			"xterm256": {
+				"number": 15,
+				"rgb": [255, 255, 255]
+			}
+		},
 		"bright-black": {
 			"truecolor": [107, 112, 137],
 			"xterm256": {
@@ -8,10 +15,10 @@
 			}
 		},
 		"dim-black": {
-			"truecolor": [22, 24, 33],
+			"truecolor": [0, 0, 0],
 			"xterm256": {
-				"number": 234,
-				"rgb": [28, 28, 28]
+				"number": 16,
+				"rgb": [0, 0, 0]
 			}
 		},
 		"bright-red": {
@@ -99,10 +106,10 @@
 			}
 		},
 		"bright-white": {
-			"truecolor": [210, 212, 222],
+			"truecolor": [255, 255, 255],
 			"xterm256": {
-				"number": 253,
-				"rgb": [218, 218, 218]
+				"number": 15,
+				"rgb": [255, 255, 255]
 			}
 		},
 		"dim-white": {
