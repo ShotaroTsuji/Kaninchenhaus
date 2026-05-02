@@ -183,11 +183,16 @@ def render(palette) -> str:
       }}
       body {{
         width: 100%;
+        min-height: 100vh;
+        color: {palette.truecolor("dim-white")};
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 15px;
+        line-height: 1.55;
       }}
       .page-nav {{
-        width: 260mm;
+        max-width: 1040px;
         margin: 0 auto;
-        padding: 1em 0 0;
+        padding: 32px 32px 0;
         display: flex;
         gap: 16px;
       }}
@@ -195,32 +200,33 @@ def render(palette) -> str:
         color: inherit;
       }}
       div.palettes {{
-        width: 260mm;
-        margin: auto;
-        padding: 1em 0;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 24px 32px 32px;
         display: grid;
-        grid-template-columns: 12.5cm 12.5cm;
-        column-gap: 1cm;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 32px;
       }}
       div.palette-container {{
         display: grid;
-        grid-template-columns: 6cm 6cm;
-        column-gap: 0.5cm;
-        row-gap: 0.25cm;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }}
       .palette-container-title {{
-        font-size: 14pt;
-        text-align: center;
+        margin-bottom: 12px;
+        font-size: 24px;
+        font-weight: 700;
       }}
       div.palette-box-container {{
-        width: 6cm;
+        min-width: 0;
       }}
       div.palette-box {{
-        width: 6cm;
-        height: 2cm;
+        width: 100%;
+        height: 72px;
       }}
       div.palette-box-caption {{
-        text-align: center;
+        margin-bottom: 4px;
+        color: {palette.truecolor("dim-white")};
       }}
       </style>
     </head>
