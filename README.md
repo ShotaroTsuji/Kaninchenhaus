@@ -11,11 +11,13 @@ cd palette
 ```
 
 By default, `palette.py` uses the `KaninchenhausDark` object in `db.json`. To use
-another top-level palette object, pass `--palette`.
+another top-level palette object, pass `--palette`. Separate names with commas
+to render multiple palettes side by side.
 
 ```sh
 python3 palette.py --palette KaninchenhausDark render
 python3 palette.py --palette KaninchenhausLight render
+python3 palette.py --palette KaninchenhausDark,KaninchenhausLight render
 ```
 
 ### Preview in a browser
@@ -34,8 +36,9 @@ http://localhost:8000/truecolor
 http://localhost:8000/xterm
 ```
 
-`/truecolor` and `/xterm` render terminal-like previews with the palette
-background color and sample text in each palette color.
+`/truecolor` and `/xterm` render terminal-like previews with each palette's own
+background color and sample text in each palette color. Start the server with a
+comma-separated `--palette` value to compare themes in the browser.
 
 ### Render HTML
 
