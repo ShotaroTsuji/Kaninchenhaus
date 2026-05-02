@@ -2,6 +2,7 @@
 Color palette viewer
 """
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import argparse
 import importlib
 import json
 import plistlib
@@ -11,12 +12,16 @@ from types import ModuleType
 import palette_converter
 
 
+DEFAULT_PALETTE = "KaninchenhausDark"
+palette_name = DEFAULT_PALETTE
+
+
 class Palette:
-    def __init__(self):
+    def __init__(self, name: str = DEFAULT_PALETTE):
         with open("./db.json", "r", encoding="utf8") as f:
             db = json.load(f)
 
-        self.palette = db["Kaninchenhaus"]
+        self.palette = db[name]
 
     def truecolor_rgb(self, name: str) -> list[int]:
         return self.palette[name]["truecolor"]
@@ -47,20 +52,30 @@ class PaletteView:
         assert self.view is not None
         return self.view.render(palette)
 
+    def render_theme_preview(self, palette, mode: str) -> str:
+        self.load_view()
+        assert self.view is not None
+        return self.view.render_theme_preview(palette, mode)
+
 
 class PaletteController(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path != "/":
+        if self.path == "/":
+            body = palette_view.render(Palette(palette_name))
+        elif self.path == "/truecolor":
+            body = palette_view.render_theme_preview(Palette(palette_name), "truecolor")
+        elif self.path == "/xterm":
+            body = palette_view.render_theme_preview(Palette(palette_name), "xterm")
+        else:
             self.send_error(404)
             return
 
-        body = palette_view.render(Palette())
-
+        body_bytes = body.encode()
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
-        self.send_header("Content-Length", format(f"{len(body.encode())}"))
+        self.send_header("Content-Length", format(len(body_bytes)))
         self.end_headers()
-        self.wfile.write(body.encode())
+        self.wfile.write(body_bytes)
 
 
 PORT: int = 8000
@@ -76,21 +91,32 @@ def run():
         server.shutdown()
 
 
-def render():
-    print(palette_view.render(Palette()))
+def render(name: str):
+    print(palette_view.render(Palette(name)))
 
 
-def iterm_colors():
-    colors = palette_converter.ConvertToiTerm2(Palette()).generate()
+def iterm_colors(name: str):
+    colors = palette_converter.ConvertToiTerm2(Palette(name)).generate()
     plistlib.dump(colors, sys.stdout.buffer)
 
 
 if __name__ == "__main__":
-    if sys.argv[1] == "run":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--palette",
+        default=DEFAULT_PALETTE,
+        help="Top-level palette name in db.json",
+    )
+    parser.add_argument("command", choices=["run", "render", "iterm-colors"])
+    args = parser.parse_args()
+
+    palette_name = args.palette
+
+    if args.command == "run":
         run()
-    elif sys.argv[1] == "render":
-        render()
-    elif sys.argv[1] == "iterm-colors":
-        iterm_colors()
+    elif args.command == "render":
+        render(args.palette)
+    elif args.command == "iterm-colors":
+        iterm_colors(args.palette)
     else:
         raise ValueError()
