@@ -1,4 +1,9 @@
-from palette import Palette
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from palette import Palette
 
 
 def rgb_to_iterm2_rgb(rgb: list[int]) -> dict[str, float | str]:
